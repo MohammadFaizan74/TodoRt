@@ -16,7 +16,8 @@ const TodoList = () => {
                 completed:false,
             };
             setTodos([...todos,newTodo])
-           // console.log(todos)
+            setInputValue("");
+           
             }
             
         
@@ -42,16 +43,19 @@ const Removehandler=(id)=>{
 };
 
   return (
-    <div>
+    <div style={{marginTop:"50px"}}>
         <div className='todo-container'>
             <h1>Todo List</h1>
-            <input type='text' value={inputValue} placeholder='Enter  a new list' 
+           <div className="todo-input">
+           <input type='text' value={inputValue} placeholder='Enter  a new list' 
             onChange={handleInputChange}
             />
             <button onClick={handleAddTodos}>Add</button>
+
+           </div>
             <ul className='todo-list'>
                 {todos.map((todo)=>(
-                    <li className={`todo-item ${todo.completed==true?"Completed":""}`}>
+                    <li className={`todo-item ${todo.completed==true?"completed":""}`}>
                         <input type='checkbox' onChange={()=>handleToggleChange(todo.id)}/>
                         <span className='todo-text'>{todo.text}</span>
                         <button onClick={()=>Removehandler(todo.id)}>Remove</button>
